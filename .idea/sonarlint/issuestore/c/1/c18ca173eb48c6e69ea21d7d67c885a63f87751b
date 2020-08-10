@@ -1,0 +1,8 @@
+
+K
+java:S1481>")Remove this unused "inna" local variable.(…•Íúÿÿÿÿ8¿ÈË½.
+T	java:S106="9Replace this use of System.out or System.err by a logger.(‹“ĞI8ÄŸÅË½.
+Z	java:S106?"9Replace this use of System.out or System.err by a logger.(“ãæ˜ùÿÿÿÿ8íı¥Ë½.
+Z
+java:S1854>"8Remove this useless assignment to local variable "inna".(…•Íúÿÿÿÿ8¿ÈË½.
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(î˜8×´¿Ë½.
