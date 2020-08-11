@@ -1,69 +1,63 @@
 package luhnJava;
 
-public class LuhnJava {
+public class LuhnJava implements LuhnAlgorithm {
 
-    public int calculateCheckDigit(String number){
+    @Override
+    public int calculateCheckDigit(String number) {
         String reverseNumber = reverseStringRepresentationOfNumber(number);
         String[] digits = reverseNumber.split("");
-        long sumOfDigitsOnOddIndex = 0;
-        long sumOfDigitsOnEvenIndex = 0;
-        long sumOfAllDigits;
+        int sumOfDigitsOnOddIndex = 0;
+        int sumOfDigitsOnEvenIndex = 0;
+        int sumOfAllDigits;
 
-        for ( int i = 1 ; i < digits.length; i += 2) {
-           sumOfDigitsOnOddIndex += Integer.parseInt(digits[i]);
-        }
-
-        for ( int i = 0 ; i < digits.length; i += 2) {
-            int digitOnEvenIndex = Integer.parseInt(digits[i]);
-            digitOnEvenIndex *= 2;
-            if(digitOnEvenIndex>9){
-                digitOnEvenIndex = (digitOnEvenIndex % 10)+1;
-            }
-            sumOfDigitsOnEvenIndex +=digitOnEvenIndex;
-        }
-
-        sumOfAllDigits = sumOfDigitsOnEvenIndex + sumOfDigitsOnOddIndex;
-        int modOfSumOfAllDigits = (int) (sumOfAllDigits % 10);
-
-        return modOfSumOfAllDigits==0? 0 : 10-modOfSumOfAllDigits;
-    }
-
-    public boolean validate(String number){
-        String reverseNumber = reverseStringRepresentationOfNumber(number);
-        String[] digits = reverseNumber.split("");
-        long sumOfDigitsOnOddIndex = 0;
-        long sumOfDigitsOnEvenIndex = 0;
-        long sumOfAllDigits;
-
-        for ( int i = 0 ; i < digits.length; i += 2) {
+        for (int i = 1; i < digits.length; i += 2) {
             sumOfDigitsOnOddIndex += Integer.parseInt(digits[i]);
         }
 
-        for ( int i = 1 ; i < digits.length; i += 2) {
+        for (int i = 0; i < digits.length; i += 2) {
             int digitOnEvenIndex = Integer.parseInt(digits[i]);
             digitOnEvenIndex *= 2;
-            if(digitOnEvenIndex>9){
-                digitOnEvenIndex = (digitOnEvenIndex % 10)+1;
+            if (digitOnEvenIndex > 9) {
+                digitOnEvenIndex = (digitOnEvenIndex % 10) + 1;
             }
-            sumOfDigitsOnEvenIndex +=digitOnEvenIndex;
+            sumOfDigitsOnEvenIndex += digitOnEvenIndex;
         }
 
         sumOfAllDigits = sumOfDigitsOnEvenIndex + sumOfDigitsOnOddIndex;
-        int modOfSumOfAllDigits = (int) (sumOfAllDigits % 10);
+        int mod =  sumOfAllDigits % 10;
 
-        return modOfSumOfAllDigits==0;
+        return mod == 0 ? 0 : 10 - mod;
     }
-    private String reverseStringRepresentationOfNumber(String number){
+
+    @Override
+    public boolean validate(String number) {
+        String reverseNumber = reverseStringRepresentationOfNumber(number);
+        String[] digits = reverseNumber.split("");
+        int sumOfDigitsOnEvenIndex = 0;
+        int sumOfDigitsOnOddIndex1 = 0;
+        int sumOfAllDigits;
+
+        for (int i = 0; i < digits.length; i += 2) {
+            sumOfDigitsOnEvenIndex += Integer.parseInt(digits[i]);
+        }
+
+        for (int i = 1; i < digits.length; i += 2) {
+            int digitOnOddIndex = Integer.parseInt(digits[i]);
+            digitOnOddIndex *= 2;
+            if (digitOnOddIndex > 9) {
+                digitOnOddIndex = (digitOnOddIndex % 10) + 1;
+            }
+            sumOfDigitsOnOddIndex1 += digitOnOddIndex;
+        }
+
+        sumOfAllDigits = sumOfDigitsOnOddIndex1 + sumOfDigitsOnEvenIndex;
+        int mod =  sumOfAllDigits % 10;
+
+        return mod == 0;
+    }
+
+    private String reverseStringRepresentationOfNumber(String number) {
         return new StringBuilder(number).reverse().toString();
     }
 
-
-    public static void main(String[] args) {
-        LuhnJava luhn = new LuhnJava();
-        String number = "2255889";
-        int checkDigit = luhn.calculateCheckDigit(number);
-        System.out.println(checkDigit);
-        System.out.println(luhn.validate("353285021741493"));
-
-    }
 }

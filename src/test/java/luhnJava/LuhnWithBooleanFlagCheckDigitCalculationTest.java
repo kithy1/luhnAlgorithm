@@ -9,24 +9,24 @@ import java.util.Collection;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class LuhnJavaCheckDigitCalculationTest {
+public class LuhnWithBooleanFlagCheckDigitCalculationTest {
     LuhnAlgorithm luhn;
 
     String numberInCase;
     int checkDigitInCase;
 
-    public LuhnJavaCheckDigitCalculationTest(String numberInCase, int checkDigitInCase) {
+    public LuhnWithBooleanFlagCheckDigitCalculationTest(String numberInCase, int checkDigitInCase) {
         this.numberInCase = numberInCase;
         this.checkDigitInCase = checkDigitInCase;
-        luhn = new LuhnJava();
+        this.luhn = new LuhnWithBooleanFlag();
     }
     @Parameterized.Parameters
     public static Collection setUpData(){
-        return List.of(new Object[][] {{"2255889", 4},{"35328501174149",3},{"92480", 3}, {"0000", 0}});
+        return List.of(new Object[][] {{"2255889", 4},{"35328501174149",3},{"92480", 3},{"0000", 0}});
     }
 
     @Test
     public void calculateCheckDigit() {
-        Assert.assertEquals(checkDigitInCase, luhn.calculateCheckDigit(numberInCase), 0);
+        Assert.assertEquals(checkDigitInCase, luhn.calculateCheckDigit(numberInCase));
     }
 }

@@ -8,23 +8,22 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 import java.util.List;
 
-
 @RunWith(Parameterized.class)
-public class LuhnJavaValidationNumberTest {
+public class LuhnWithBooleanFlagValidationNumberTest {
     LuhnAlgorithm luhn;
 
     String numberInCase;
-    Boolean isValid;
+    boolean isValid;
 
-    public LuhnJavaValidationNumberTest(String numberInCase, Boolean isValid) {
+    public LuhnWithBooleanFlagValidationNumberTest(String numberInCase, boolean isValid) {
         this.numberInCase = numberInCase;
         this.isValid = isValid;
-        luhn = new LuhnJava();
+        this.luhn = new LuhnWithBooleanFlag();
     }
 
     @Parameterized.Parameters
-    public static Collection inputData() {
-        return List.of(new Object[][]{{"353285011741493", true}, {"22558894", true}, {"353285021741493", false}, {"924803", true}, {"925803", false}, {"0000", true}});
+    public static Collection setUpData(){
+        return List.of(new Object [][]{{"353285011741493", true}, {"22558894", true}, {"353285021741493", false}, {"924803", true}, {"925803", false}, {"0000", true}});
     }
 
     @Test
@@ -32,5 +31,4 @@ public class LuhnJavaValidationNumberTest {
         boolean actual = luhn.validate(numberInCase);
         Assert.assertEquals(isValid, actual);
     }
-
 }
