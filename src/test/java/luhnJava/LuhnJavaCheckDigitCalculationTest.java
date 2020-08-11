@@ -22,7 +22,7 @@ public class LuhnJavaCheckDigitCalculationTest {
     }
     @Parameterized.Parameters
     public static Collection setUpData(){
-        return List.of(new Object[][] {{"2255889", 4},{"35328501174149",3},{"92480", 3}, {"0000", 0}});
+        return List.of(new Object[][] {{"2255889", 4},{"35328501174149",3},{"92480", 3}, {"0000", 0}, {"54535", 0}, {"34668270810251", 0}, {"35395129939832", 8}});
     }
 
     @Test

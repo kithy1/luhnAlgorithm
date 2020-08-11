@@ -1,8 +1,8 @@
 package luhnKotlin
 
-public class Luhn {
+public class Luhn : LuhnAlgorithm{
 
-    fun validate(number: String?): Boolean {
+    override fun validate(number: String?): Boolean {
         val reverseNumber = reverseStringRepresentationOfNumber(number)
 
         var sumOfDigitsOnOddIndex = 0
@@ -30,7 +30,7 @@ public class Luhn {
         val modOfSumOfAllDigits = (sumOfAllDigits % 10)
         return modOfSumOfAllDigits == 0
     }
-    fun calculateCheckDigit(number: String?): Int {
+    override fun calculateCheckDigit(number: String?): Int {
         val reverseNumber = reverseStringRepresentationOfNumber(number)
 
         var sumOfDigitsOnOddIndex = 0

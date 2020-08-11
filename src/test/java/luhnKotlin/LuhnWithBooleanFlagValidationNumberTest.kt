@@ -1,14 +1,14 @@
 package luhnKotlin
 
-import luhnJava.LuhnJava
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class LuhnValidationNumberTest(private val numberInCase: String, private val isValid: Boolean) {
-    var luhn = LuhnJava()
+class LuhnWithBooleanFlagValidationNumberTest(private val numberInCase: String, private val isValid: Boolean) {
+
+    var luhn = LuhnWithBooleanFlag()
 
     companion object {
         @JvmStatic
